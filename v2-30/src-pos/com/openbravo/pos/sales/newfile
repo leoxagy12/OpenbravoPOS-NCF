@@ -1,0 +1,121 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.openbravo.pos.sales;
+
+/**
+ *
+ * @author leo
+ */
+public class NewClass {
+
+    if (cTrans == ' ' || cTrans == '=') {
+
+           if (m_oTicket.getLinesCount() > 0) {
+
+                if(jCheckFiscalCredit.isSelected()) {
+                    if(m_oTicket.getCustomer() == null)
+                        JOptionPane.showMessageDialog(this, "Para credito fiscal debe agregar el usuario con RNC valido");
+                    else {
+                        String clienteRNC =  m_oTicket.getCustomer().getTaxid();
+
+                        if(clienteRNC.equals(""))
+                            JOptionPane.showMessageDialog(this, "Este cliente no tiene un RNC asignado!");
+                        else{
+
+                            int confirmacionRNC = JOptionPane.showConfirmDialog(this, "Ha confirmado este RNC? " + clienteRNC);
+                            //Yes = 0, No = 1, Cancel = 2
+
+                            switch(confirmacionRNC){
+                                case(0): //YES
+                                        if (closeTicket(m_oTicket, m_oTicketExt)) {
+                                            // Ends edition of current receipt
+                                            m_ticketsbag.deleteTicket();
+                                        } else {
+                                            // repaint current ticket
+                                            refreshTicket();
+                                        }
+                                    break;
+                                case(1): //NO
+                                        JOptionPane.showMessageDialog(this, "Verifique ingresando a la pagina de la DGII: ww.ww");
+                                    break;
+                                case(2): //CANCEL
+                                    break;
+
+                            }
+
+
+                        }
+                    }
+                } else {
+                        if (closeTicket(m_oTicket, m_oTicketExt)) {
+                            // Ends edition of current receipt
+                            m_ticketsbag.deleteTicket();
+                        } else {
+                            // repaint current ticket
+                            refreshTicket();
+                        }
+                    }
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
+                }
+
+    }
+
+}
+
+
+
+if (cTrans == ' ' || cTrans == '=') {
+
+                if(jCheckFiscalCredit.isSelected()) {
+                    if(m_oTicket.getCustomer() == null)
+                        JOptionPane.showMessageDialog(this, "Para credito fiscal debe agregar el usuario con RNC valido");
+                    else {
+                        CustomerInfoExt cliente =  m_oTicket.getCustomer();
+
+                        if(cliente.getTaxid().equals(""))
+                            JOptionPane.showMessageDialog(this, "Este cliente no tiene un RNC asignado!");
+                        else{
+                            int confirmacionRNC;
+                            confirmacionRNC = JOptionPane.showConfirmDialog(this, "Ha confirmado este RNC? " + cliente.getTaxid());
+                            //Yes = 0, No = 1, Cancel = 2
+
+                            switch(confirmacionRNC){
+                                case(0): //YES
+                                        if (closeTicket(m_oTicket, m_oTicketExt)) {
+                                            // Ends edition of current receipt
+                                            m_ticketsbag.deleteTicket();
+                                        } else {
+                                            // repaint current ticket
+                                            refreshTicket();
+                                        }
+                                    break;
+                                case(1): //NO
+                                        JOptionPane.showMessageDialog(this, "Verifique ingresando a la pagina de la DGII: ww.ww");
+                                    break;
+                                case(2): //CANCEL
+                                    break;
+
+                            }
+
+
+                        }
+                    }
+                } else {
+                    if (m_oTicket.getLinesCount() > 0) {
+
+                        if (closeTicket(m_oTicket, m_oTicketExt)) {
+                            // Ends edition of current receipt
+                            m_ticketsbag.deleteTicket();
+                        } else {
+                            // repaint current ticket
+                            refreshTicket();
+                        }
+                    } else {
+                        Toolkit.getDefaultToolkit().beep();
+                    }
+                }
+            }
